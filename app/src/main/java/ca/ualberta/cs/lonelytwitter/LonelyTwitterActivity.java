@@ -48,7 +48,6 @@ public class LonelyTwitterActivity extends Activity {
 				ImportantTweet newestImportantTweet = new ImportantTweet(text);
 
 				ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
-				tweetList.add(newTweet);
 				tweetList.add(newestImportantTweet);
 				saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
