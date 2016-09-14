@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by scarletspider616 on 2016-09-13.
  */
-public class Tweet {
+public abstract class Tweet {
     private String message;
     private Date date;
 
@@ -33,4 +33,5 @@ public class Tweet {
     public Date getDate() {
         return this.date;
     }
+    public abstract Boolean isImportant();
 }
