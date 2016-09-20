@@ -14,6 +14,7 @@ public abstract class Tweet {
     public Tweet(String message) {
         /* constructor */
         this.message = message;
+        this.date = new Date();
     }
     public Tweet (String message, Date date) {
         this.message = message;
@@ -25,6 +26,10 @@ public abstract class Tweet {
             throw new TweetTooLongException();
         }
         this.message = message;
+    }
+    @Override
+    public String toString() {
+        return date.toString() + " | " + this.message;
     }
     public void setDate(Date date) {
         this.date = date;
