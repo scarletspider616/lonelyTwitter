@@ -20,8 +20,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,17 +56,21 @@ import com.google.gson.reflect.TypeToken;
  * @since 1.0
  */
 public class LonelyTwitterActivity extends Activity {
-    /**
-     * this is the filename that is being saved/loaded and contains all the tweets.
-     * @see #loadFromFile()
-     * @see #saveInFile()
-     */
+	/**
+	 * this is the filename that is being saved/loaded and contains all the tweets.
+	 *
+	 * @see #loadFromFile()
+	 * @see #saveInFile()
+	 */
+
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
+	private Activity activity = this;
+	private Gson gson = new Gson();
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +79,14 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+
+		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick (AdapterView < ? > parent, View view,int position, long id){
+				Intent intent = new Intent(activity, EditTweetActivity.class);
+				intent.putExtra("Tweet", gson.toJson(tweetList.get(position)));
+				startActivity(intent);
+			}
+		});
 
 		/* Create the save, or "Tweet" button. */
 		Button saveButton = (Button) findViewById(R.id.save);
@@ -102,6 +116,10 @@ public class LonelyTwitterActivity extends Activity {
 			}
 		});
 	}
+	public ListView getOldTweetsList() {
+
+	return (ListView) oldTweetsList;
+	}
 
 	@Override
 	protected void onStart() {
@@ -127,7 +145,7 @@ public class LonelyTwitterActivity extends Activity {
 			// Code from http://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
 			Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
 
-			tweetList = gson.fromJson(in,listType);
+//			tweetList = gson.fromJson(in,listType);
 
 		} catch (FileNotFoundException e) {
 			/* Create a brand new tweet list if we can't find the file. */
