@@ -15,6 +15,13 @@ How does it work?
 			stateless
 		operates over HTTP
 		POST/PUT = Create
+			POST - submitting a request
+			PUT - submitting a request and updating 
 		GET = Read
 		POST/PUT = Update
 		DELETE = delete
+Some useful tools
+	Linux - CURL 
+		see CURL tutorial in this dir
+	Windows - Fiddler
+	web - RESTClient
