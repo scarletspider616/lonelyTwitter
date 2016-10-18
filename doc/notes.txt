@@ -1,0 +1,20 @@
+Elastic search 
+	schema free (no sql) 
+	open source (apache) 
+	uses RESTful API 
+Who uses it? 
+	netflix
+	github
+	stack overflow
+	rogers
+	ebay
+How does it work? 
+	RESTful API
+		REpresentational State Transfer
+			protocol doesn't assume state is stored through communications
+			stateless
+		operates over HTTP
+		POST/PUT = Create
+		GET = Read
+		POST/PUT = Update
+		DELETE = delete
